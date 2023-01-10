@@ -24,7 +24,6 @@ antigen bundle tmux
 
 # Bundles from outside the default repository.
 antigen bundle menketechnologies/zsh-more-completions
-antigen bundle zsh-users/zsh-autosuggestions
 
 # Set powerlevel10k theme
 antigen theme romkatv/powerlevel10k
@@ -116,8 +115,11 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
 
 # ZSH completion system
-autoload -Uz compinit
-compinit -d ~/.cache/zcompdump
+if [ -f ./.zcompdump ]
+then
+  autoload -Uz compinit
+fi
+compinit -C ~//.zcompdump
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -235,7 +237,7 @@ POWERLEVEL9K_MODE=nerdfont-complete
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_beginning
 POWERLEVEL9K_INSTANT_PROMPT=quiet
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-x=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='${P9K_CONTENT} $(whoami | grep -v "^root\$")'
