@@ -70,7 +70,7 @@ command -v bat > /dev/null && \
   alias less='bat'
 # in debian the command is batcat
 command -v batcat > /dev/null && \
-  alias batcat='batcat --theme=ansi' && \
+  alias batcat='batcat --theme=ansi-dark' && \
   alias cat='batcat --pager=never' && \
   alias less='batcat'
 
