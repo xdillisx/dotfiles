@@ -21,6 +21,8 @@ antigen bundle git
 antigen bundle sudo
 antigen bundle themes
 antigen bundle tmux
+antigen bundle autojump
+antigen bundle z
 
 # Bundles from outside the default repository.
 antigen bundle menketechnologies/zsh-more-completions
@@ -117,9 +119,11 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # ZSH completion system
 if [ -f ./.zcompdump ]
 then
-  autoload -Uz compinit
+  autoload -Uz +X compinit && compinitx`x`
 fi
 compinit -C ~//.zcompdump
+# Source kubectl autocompletions
+source <(kubectl completion zsh)
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -264,8 +268,9 @@ POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=↓
 POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=↑
 POWERLEVEL9K_VCS_COMMIT_ICON=$s
 POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
+POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+POWERLEVEL9K_VIRTUALENV_BACKGROUND=yellow
 POWERLEVEL9K_EXECUTION_TIME_ICON=$s
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=black
@@ -291,7 +296,7 @@ POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL='\uE0B2'
 POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL='\uE0B0'
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{blue}╭─'
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{blue}╰%f '
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator ssh dir dir_writable vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator ssh virtualenv dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status command_execution_time background_jobs time ram)
 unset s
 
