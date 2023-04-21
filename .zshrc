@@ -119,7 +119,7 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # ZSH completion system
 if [ -f ./.zcompdump ]
 then
-  autoload -Uz +X compinit && compinitx`x`
+  autoload -Uz +X compinit && compinit
 fi
 compinit -C ~//.zcompdump
 # Source kubectl autocompletions
