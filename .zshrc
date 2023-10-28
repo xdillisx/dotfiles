@@ -65,6 +65,15 @@ command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && \
 command -v colorls > /dev/null && alias ls='colorls --sd --gs' && \
   alias tree='colorls --tree'
 
+## exa
+alias ls="exa" # ls
+alias ll='exa -lbF --git' # list, size, type, git
+alias llm='exa -lbGd --git --sort=modified' # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale' # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+alias lS='exa -1' # one column, just names
+alias lt='exa --tree --level=2' # tree
+
 ### CAT & LESS
 command -v bat > /dev/null && \
   alias bat='bat --theme=ansi' && \
@@ -123,7 +132,7 @@ then
 fi
 compinit -C ~//.zcompdump
 # Source kubectl autocompletions
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
