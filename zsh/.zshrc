@@ -9,7 +9,7 @@ fi
 
 # Source antigen plugin manager.
 ANTIGEN_PATH=~/
-source $ANTIGEN_PATH/antigen/antigen.zsh
+source ./antigen/antigen.zsh
 
 # Antigen init
 antigen init .antigenrc
