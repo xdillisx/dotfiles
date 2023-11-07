@@ -8,39 +8,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Source antigen plugin manager.
-source /usr/share/zsh-antigen/antigen.zsh
+ANTIGEN_PATH=~/
+source $ANTIGEN_PATH/antigen/antigen.zsh
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle colored-man-pages
-antigen bundle colorize
-antigen bundle command-not-found
-antigen bundle git
-antigen bundle sudo
-antigen bundle themes
-antigen bundle tmux
-antigen bundle autojump
-antigen bundle z
-
-# Bundles from outside the default repository.
-antigen bundle menketechnologies/zsh-more-completions
-
-# Set powerlevel10k theme
-antigen theme romkatv/powerlevel10k
-
-# Initialize selected antigen options
-antigen apply
-
-# The following lines were added by compinstall
-
-# Configure color-scheme
-COLOR_SCHEME=dark # dark/light
-
+# Antigen init
+antigen init .antigenrc
 
 # --------------------------------- ALIASES -----------------------------------
-#alias ..='cd ..'
+
+alias ..='cd ..'
 alias cp='cp -v'
 alias rm='rm -I'
 alias mv='mv -iv'
@@ -48,7 +24,7 @@ alias xclip='xclip -selection c'
 # command -v vim > /dev/null && alias vi='vim'
 
 ### Colorize commands
-alias ls='ls --color=auto'
+# alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -56,14 +32,14 @@ alias diff='diff --color=auto'
 alias ip='ip --color=auto'
 alias pacman='pacman --color=auto'
 
-### LS & TREE
-alias ll='ls -la'
-alias la='ls -A'
-alias l='ls -F'
-command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && \
-  alias tree='lsd --tree'
-command -v colorls > /dev/null && alias ls='colorls --sd --gs' && \
-  alias tree='colorls --tree'
+# ### LS & TREE
+# alias ll='ls -la'
+# alias la='ls -A'
+# alias l='ls -F'
+# command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && \
+#   alias tree='lsd --tree'
+# command -v colorls > /dev/null && alias ls='colorls --sd --gs' && \
+#   alias tree='colorls --tree'
 
 ## exa
 alias ls="exa" # ls
@@ -75,10 +51,10 @@ alias lS='exa -1' # one column, just names
 alias lt='exa --tree --level=2' # tree
 
 ### CAT & LESS
-command -v bat > /dev/null && \
-  alias bat='bat --theme=ansi' && \
-  alias cat='bat --pager=never' && \
-  alias less='bat'
+# command -v bat > /dev/null && \
+#   alias bat='bat --theme=ansi' && \
+#   alias cat='bat --pager=never' && \
+#   alias less='bat'
 # in debian the command is batcat
 command -v batcat > /dev/null && \
   alias batcat='batcat --theme=ansi-dark' && \
@@ -86,13 +62,13 @@ command -v batcat > /dev/null && \
   alias less='batcat'
 
 ### TOP
-command -v htop > /dev/null && alias top='htop'
-command -v gotop > /dev/null && alias top='gotop -p $([ "$COLOR_SCHEME" = "light" ] && echo "-c default-dark")'
-command -v ytop > /dev/null && alias top='ytop -p $([ "$COLOR_SCHEME" = "light" ] && echo "-c default-dark")'
-command -v btm > /dev/null && alias top='btm $([ "$COLOR_SCHEME" = "light" ] && echo "--color default-light")'
-# themes for light/dark color-schemes inside ~/.config/bashtop; Press ESC to open the menu and change the theme
-command -v bashtop > /dev/null && alias top='bashtop'
-command -v bpytop > /dev/null && alias top='bpytop'
+# command -v htop > /dev/null && alias top='htop'
+# command -v gotop > /dev/null && alias top='gotop -p $([ "$COLOR_SCHEME" = "light" ] && echo "-c default-dark")'
+# command -v ytop > /dev/null && alias top='ytop -p $([ "$COLOR_SCHEME" = "light" ] && echo "-c default-dark")'
+# command -v btm > /dev/null && alias top='btm $([ "$COLOR_SCHEME" = "light" ] && echo "--color default-light")'
+# # themes for light/dark color-schemes inside ~/.config/bashtop; Press ESC to open the menu and change the theme
+# command -v bashtop > /dev/null && alias top='bashtop'
+# command -v bpytop > /dev/null && alias top='bpytop'
 
 # --------------------------------- SETTINGS ----------------------------------
 setopt AUTO_CD
@@ -124,6 +100,8 @@ WORDCHARS=${WORDCHARS//\/}
 PROMPT_EOL_MARK=
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
+# Source kubectl autocompletions
+# source <(kubectl completion zsh)
 
 # ZSH completion system
 if [ -f ./.zcompdump ]
@@ -131,8 +109,8 @@ then
   autoload -Uz +X compinit && compinit
 fi
 compinit -C ~//.zcompdump
-# Source kubectl autocompletions
-# source <(kubectl completion zsh)
+
+
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
