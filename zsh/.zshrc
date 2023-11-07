@@ -287,18 +287,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator ssh virtualenv dir dir
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status command_execution_time background_jobs time ram)
 unset s
 
-
-switch_powerlevel_multiline_prompt(){
-  [ $POWERLEVEL9K_PROMPT_ON_NEWLINE = true ] \
-    && POWERLEVEL9K_PROMPT_ON_NEWLINE=false \
-    || POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-  zle && zle accept-line
-}
-zle -N switch_powerlevel_multiline_prompt
-bindkey ^P switch_powerlevel_multiline_prompt
-
-
 # -------------------------------- FUNCTIONS ---------------------------------
 
 find() {
