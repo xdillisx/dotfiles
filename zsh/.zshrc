@@ -49,6 +49,7 @@ alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale' # all list
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 alias lS='exa -1' # one column, just names
 alias lt='exa --tree --level=2' # tree
+alias l='exa -l'
 
 ### CAT & LESS
 # command -v bat > /dev/null && \
@@ -286,6 +287,17 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{blue}╰%f '
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator ssh virtualenv dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status command_execution_time background_jobs time ram)
 unset s
+
+switch_powerlevel_multiline_prompt(){
+  [ $POWERLEVEL9K_PROMPT_ON_NEWLINE = true ] \
+    && POWERLEVEL9K_PROMPT_ON_NEWLINE=false \
+    || POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+  zle && zle accept-line
+}
+zle -N switch_powerlevel_multiline_prompt
+bindkey ^P switch_powerlevel_multiline_prompt
+
 
 # -------------------------------- FUNCTIONS ---------------------------------
 
