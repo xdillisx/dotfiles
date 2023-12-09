@@ -49,6 +49,7 @@ alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale' # all list
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 alias lS='exa -1' # one column, just names
 alias lt='exa --tree --level=2' # tree
+alias l='exa -l'
 
 ### CAT & LESS
 command -v batcat > /dev/null && \
@@ -184,7 +185,6 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=magenta,bold
 ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=yellow,bold
 ZSH_HIGHLIGHT_STYLES[bracket-level-5]=fg=cyan,bold
 ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
-
 
 
 switch_powerlevel_multiline_prompt(){
