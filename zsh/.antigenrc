@@ -13,7 +13,8 @@ antigen bundle autojump
 antigen bundle z
 
 # Bundles from outside the default repository.
-# antigen bundle menketechnologies/zsh-more-completions
+antigen bundle menketechnologies/zsh-more-completions
+antigen bundle zsh-users/zsh-autosuggestions
 
 # Set powerlevel10k theme
 antigen theme romkatv/powerlevel10k
